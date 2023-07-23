@@ -57,3 +57,19 @@ button{
     position: relative;
     bottom: -100px;
 }
+
+.plant-image{
+    height: 90vh;
+    position: relative;
+    bottom: -50px;
+}
+
+.accordion-item{
+    background-color: #18382B;
+    color: white;
+    border-radius: 5%;
+}
+
+.accordion-button{
+    color: green;
+}
