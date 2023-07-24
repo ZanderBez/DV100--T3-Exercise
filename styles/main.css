@@ -1,9 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato&family=Libre+Baskerville:wght@700&display=swap');
 
-/* -------------------------------------------------------------------------------------------*/
+/* --------------------------------------------------------------------------------------------*/
 /* Global Style*/
 
-/* Fonts */
+/* Fonts --------------------------------------------------------------------------------------*/
 
 h1,h2,h3,h4,h5,h6{
     font-family: 'Libre Baskerville', serif;
@@ -14,12 +14,12 @@ p{
     font-size: 16px;
 }
 
-/* Spacing */
+/* Spacing -------------------------------------------------------------------------------------*/
 .full-height{
     height: 100vh;
 }
 
-/* Components */
+/* Components ----------------------------------------------------------------------------------*/
 
 button{
     border: none;
@@ -30,7 +30,25 @@ button{
     font-size: 16px;
     color: white;
 }
-/* Carousel */
+
+/* nav ------------------------------------------------------------------------------------------*/
+
+.nav-link{
+    font-family: 'Lato', sans-serif;
+    color:rgba(0, 0, 0, 0.6) ;
+}
+
+.nav-link:hover{
+    color: #18382B;
+}
+
+.nav-link.active{
+    border-bottom: 2px solid #18382B;
+    color: #18382B;
+}
+
+
+/* Carousel --------------------------------------------------------------------------------------*/
 .carousel-item{
     background-color: #ceead5;
 }
@@ -49,8 +67,33 @@ button{
     left: 96px;
 }
 
+/* Card ------------------------------------------------------------------------------------------*/
 
-/* Home Page */
+.card{
+    border-radius: 150px 150px 12px 12px;
+    background-color: #f3f3f3;
+    text-align: center;
+    height: 440px;
+    border: none;
+}
+
+.card-img-top{
+    width: auto;
+    height: 320px;
+    margin: auto;
+    transition: all 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.card-img-top.small{
+    height: 200px;
+}
+
+.card-text{
+    color: #18382B;
+}
+
+
+/* Home Page -------------------------------------------------------------------------------------*/
 
 .hero-image{
     height: 90vh;
