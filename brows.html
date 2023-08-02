@@ -42,17 +42,22 @@
         <h2>Browse Plants</h2>
 
             <!-- List of pLants -->
-        <div class="row pt-5">
+        <div class="row py-5 gy-3" id="plantContainer">
+
+          <!-- Browse Card Template -->
+          <template id="plantCardTemplate">
             <div class="col-4">
+
                 <div class="card">
                     <img src="/assets/plant1.png" class="card-img-top" alt="...">
                     <div class="card-body">
-                        <h5 class="card-title">Ficus Tree</h5>
+                        <h5 class="card-title" id="nameText">Ficus Tree</h5>
                         <p class="card-text" id="priceText">R250</p>
                         <p class="card-text" id="descriptionText">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Molestiae quos eos, optio ab ullam accusantium impedit consequatur fuga dignissimos asperiores repellendus expedita harum ipsa ipsum reiciendis dicta doloribus ea vitae.</p>
                     </div>
                 </div>
             </div>
+          </template>
         </div>
     </div>
 
