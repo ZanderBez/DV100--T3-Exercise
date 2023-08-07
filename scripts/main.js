@@ -1,39 +1,52 @@
  // -----------------------------------------------------------------------------------------------
  //   Plant Array
  // -----------------------------------------------------------------------------------------------
- 
+
     const arrPlants = [
         {
             name: "Ficus Tree",
             price: 350,
             description: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Molestiae quos eos, optio ab ullam accusantium impedit consequatur fuga dignissimos asperiores repellendus expedita harum ipsa ipsum reiciendis dicta doloribus ea vitae",
             image: "plant1.png",
-        
-        
+            lightAmount: "low",
+            addedDate: "2023-03-25"
+        },
+        {
             name: "White Sprite Succulent",
+            price: 200,
+            description: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Molestiae quos eos, optio ab ullam accusantium impedit consequatur fuga dignissimos asperiores repellendus expedita harum ipsa ipsum reiciendis dicta doloribus ea vitae",
+            image: "plant2.png",
+            lightAmount: "bright",
+            addedDate: "2023-02-01"
+        },
+        {
+            name: "Snake plant",
+            price: 400,
+            description: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Molestiae quos eos, optio ab ullam accusantium impedit consequatur fuga dignissimos asperiores repellendus expedita harum ipsa ipsum reiciendis dicta doloribus ea vitae",
+            image: "plant3.png",
+            lightAmount: "low",
+            addedDate: "2023-01-22"
+        },
+        {
+            name: "Parlour Plant",
             price: 350,
             description: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Molestiae quos eos, optio ab ullam accusantium impedit consequatur fuga dignissimos asperiores repellendus expedita harum ipsa ipsum reiciendis dicta doloribus ea vitae",
-            image: "plant1.png",
-        
-        
-            name: "Ficus Tree",
-            price: 350,
-            description: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Molestiae quos eos, optio ab ullam accusantium impedit consequatur fuga dignissimos asperiores repellendus expedita harum ipsa ipsum reiciendis dicta doloribus ea vitae",
-            image: "plant1.png",
-        
-        
-            name: "Ficus Tree",
+            image: "plant4.png",
+            lightAmount: "bright",
+            addedDate: "2023-05-26"
+        },
+        {
+            name: "Japanese Maple",
             price: 1200,
             description: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Molestiae quos eos, optio ab ullam accusantium impedit consequatur fuga dignissimos asperiores repellendus expedita harum ipsa ipsum reiciendis dicta doloribus ea vitae",
-            image: "plant1.png",
-          
-         
-            name: "Ficus Tree",
-            price: 1200,
-            description: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Molestiae quos eos, optio ab ullam accusantium impedit consequatur fuga dignissimos asperiores repellendus expedita harum ipsa ipsum reiciendis dicta doloribus ea vitae",
-            image: "plant1.png",
+            image: "plant5.png",
+            lightAmount: "low",
+            addedDate: "2023-06-04"
         }
-    ]
+    ];
+
+    let appliedFilter ="";
+    let appliedSort ="date added";
 
  // -----------------------------------------------------------------------------------------------
 //when the document loads
@@ -51,7 +64,7 @@ $(document).ready(function(){
 
     // -----------------------------------------------------------------------------------------------
     // Browse Page
-    loadPlants();
+    filterSortPlants();
 
 });
 
@@ -59,12 +72,17 @@ $(document).ready(function(){
 // Load all Plants
  // -----------------------------------------------------------------------------------------------
 
- function loadPlants() {
+ function loadPlants(plantsToShow) {
 
     console.log(arrPlants);
 
-    for (let i = 0; i < arrPlants.length; i++) {
-        const plant = arrPlants [i];
+    // Clear all the elements in plantContainer
+    $("#plantContainer").empty();
+
+    // loop through plants
+
+    for (let i = 0; i < plantsToShow.length; i++) {
+        const plant = plantsToShow [i];
 
         console.log(plant);
 
@@ -72,7 +90,7 @@ $(document).ready(function(){
         $("#plantContainer").append($("#plantCardTemplate").html());
 
         // 2: Create a variable that contains the most recently added plant card
-        let currentChild = $("#plantContainer").children().eq(i+1)
+        let currentChild = $("#plantContainer").children().eq(i)
 
         // 3: set the content for the current plant card from the plants array
         $(currentChild).find("#nameText").text(plant.name);
@@ -103,7 +121,60 @@ $(".minus2").click(function(){
 
  // -----------------------------------------------------------------------------------------------
 // When the plant cards is clicked
+
+$("input[name='filterRadio']").click(function(){
+    appliedFilter = $(this).attr('value');
+
+    console.log(appliedFilter)
+    filterSortPlants();
+});
+
+$("input[name='sortRadio']").click(function(){
+    appliedSort = $(this).attr('value');
+
+    console.log(appliedSort)
+    filterSortPlants();
+});
+
+function filterSortPlants() {
+
+    let filterSortedArrPlants = [];
+
+    // Filter plants
+
+    if (appliedFilter){
+        filterSortedArrPlants = arrPlants.filter(plant => plant.lightAmount == appliedFilter)
+    } else{
+        filterSortedArrPlants = arrPlants;
+    }
+
+// Sort Plants
+
+    if (appliedSort == "low to High"){
+
+        // Sort the plants from lowest to highest
+        filterSortedArrPlants = filterSortedArrPlants.sort((a,b) => {
+            return a.price - b.price;
+        });
+
+    } else if (appliedSort == "date added") {
+
+        // sort plants from the newest to oldest
+        filterSortedArrPlants = filterSortedArrPlants.sort((a,b) => {
+            let da = new Date(a.addedDate);
+            let db = new Date(b.addedDate);
+
+            return db -da;
+        });
+    }
+
+    loadPlants(filterSortedArrPlants);
+
+
+}
+
  // -----------------------------------------------------------------------------------------------
+// When the plant cards is clicked
 $("#plantContainer").on('click','.card', function(){
 
     // toggle the price and description text

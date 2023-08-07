@@ -41,25 +41,53 @@
 
         <h2>Browse Plants</h2>
 
+        <div class="row">
+
+          <!-- filter radio buttons -->
+          <div class="btn-group col-auto" role="group" aria-label="Basic radio toggle button group">
+            <input type="radio" class="btn-check" name="filterRadio" id="allPlantFilter" value="" autocomplete="off" checked>
+            <label class="btn btn-outline-success" for="allPlantFilter">All Plants</label>
+          
+            <input type="radio" class="btn-check" name="filterRadio" id="brightLightFilter" value="bright" autocomplete="off">
+            <label class="btn btn-outline-success" for="brightLightFilter"><i class="bi bi-brightness-high-fill"></i>Bright Light</label>
+          
+            <input type="radio" class="btn-check" name="filterRadio" id="lowLightFilter" value="low" autocomplete="off">
+            <label class="btn btn-outline-success" for="lowLightFilter"><i class="bi bi-brightness-low-fill"></i>Low Light</label>
+          </div>
+
+          <!-- Sort radio buttons -->
+          <div class="btn-group col-auto" role="group" aria-label="Basic radio toggle button group">
+            <input type="radio" class="btn-check" name="sortRadio" id="defaultSort" value="date added" autocomplete="off">
+            <label class="btn btn-outline-secondary" for="defaultSort"><i class="bi bi-calendar4"></i>Newest to Oldest</label>
+          
+            <input type="radio" class="btn-check" name="sortRadio" id="priceSort" value="low to high" autocomplete="off">
+            <label class="btn btn-outline-secondary" for="priceSort"><i class="bi bi-sort-down-alt"></i>Price: Low To High</label>
+          </div>
+
+        </div>
+
             <!-- List of pLants -->
         <div class="row py-5 gy-3" id="plantContainer">
-
-          <!-- Browse Card Template -->
-          <template id="plantCardTemplate">
-            <div class="col-4">
-
-                <div class="card">
-                    <img src="/assets/plant1.png" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title" id="nameText">Ficus Tree</h5>
-                        <p class="card-text" id="priceText">R250</p>
-                        <p class="card-text" id="descriptionText">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Molestiae quos eos, optio ab ullam accusantium impedit consequatur fuga dignissimos asperiores repellendus expedita harum ipsa ipsum reiciendis dicta doloribus ea vitae.</p>
-                    </div>
-                </div>
-            </div>
-          </template>
+        
+          <!-- Plant cards are appended here -->
+        
         </div>
     </div>
+
+    <!-- Browse Card Template -->
+    <template id="plantCardTemplate">
+      <div class="col-4">
+
+          <div class="card">
+              <img src="/assets/plant1.png" class="card-img-top" alt="...">
+              <div class="card-body">
+                  <h5 class="card-title" id="nameText">Ficus Tree</h5>
+                  <p class="card-text" id="priceText">R250</p>
+                  <p class="card-text" id="descriptionText">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Molestiae quos eos, optio ab ullam accusantium impedit consequatur fuga dignissimos asperiores repellendus expedita harum ipsa ipsum reiciendis dicta doloribus ea vitae.</p>
+              </div>
+          </div>
+      </div>
+    </template>
 
     <!-- javascript -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
