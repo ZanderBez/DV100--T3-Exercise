@@ -64,14 +64,28 @@
             <label class="btn btn-outline-secondary" for="priceSort"><i class="bi bi-sort-down-alt"></i>Price: Low To High</label>
           </div>
 
-        </div>
+          <!-- Sale radio buttons -->
+          <div class="btn-group col-auto" role="group" aria-label="Basic radio toggle button group">
 
+            <input type="radio" class="btn-check" name="saleRadio" id="defaultPlants" value="" autocomplete="off" checked>
+            <label class="btn btn-outline-danger" for="defaultPlants"><i class="bi bi-calendar4"></i>All Items</label>
+
+            <input type="radio" class="btn-check" name="saleRadio" id="salePlants" value="sale" autocomplete="off">
+            <label class="btn btn-outline-danger" for="salePlants"><i class="bi bi-calendar4"></i>On Sale</label>
+          </div>
+
+          <!-- A-Z -->
+          <div class="btn-group col-auto" role="group" aria-label="Basic checkbox toggle button group">
+            <input type="checkbox" class="btn-check" id="btncheck1" autocomplete="off">
+            <label class="btn btn-outline-primary" for="btncheck1">Alphabetically A-Z</label>
+          </div>
+        </div>
+        
             <!-- List of pLants -->
         <div class="row py-5 gy-3" id="plantContainer">
-        
-          <!-- Plant cards are appended here -->
-        
+
         </div>
+        <!-- Plant cards are appended here -->  
     </div>
 
     <!-- Browse Card Template -->

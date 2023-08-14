@@ -9,7 +9,8 @@
             description: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Molestiae quos eos, optio ab ullam accusantium impedit consequatur fuga dignissimos asperiores repellendus expedita harum ipsa ipsum reiciendis dicta doloribus ea vitae",
             image: "plant1.png",
             lightAmount: "low",
-            addedDate: "2023-03-25"
+            addedDate: "2023-03-25",
+            onSale: false
         },
         {
             name: "White Sprite Succulent",
@@ -17,7 +18,8 @@
             description: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Molestiae quos eos, optio ab ullam accusantium impedit consequatur fuga dignissimos asperiores repellendus expedita harum ipsa ipsum reiciendis dicta doloribus ea vitae",
             image: "plant2.png",
             lightAmount: "bright",
-            addedDate: "2023-02-01"
+            addedDate: "2023-02-01",
+            onSale: true
         },
         {
             name: "Snake plant",
@@ -25,7 +27,8 @@
             description: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Molestiae quos eos, optio ab ullam accusantium impedit consequatur fuga dignissimos asperiores repellendus expedita harum ipsa ipsum reiciendis dicta doloribus ea vitae",
             image: "plant3.png",
             lightAmount: "low",
-            addedDate: "2023-01-22"
+            addedDate: "2023-01-22",
+            onSale: false
         },
         {
             name: "Parlour Plant",
@@ -33,7 +36,8 @@
             description: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Molestiae quos eos, optio ab ullam accusantium impedit consequatur fuga dignissimos asperiores repellendus expedita harum ipsa ipsum reiciendis dicta doloribus ea vitae",
             image: "plant4.png",
             lightAmount: "bright",
-            addedDate: "2023-05-26"
+            addedDate: "2023-05-26",
+            onSale: true
         },
         {
             name: "Japanese Maple",
@@ -41,7 +45,8 @@
             description: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Molestiae quos eos, optio ab ullam accusantium impedit consequatur fuga dignissimos asperiores repellendus expedita harum ipsa ipsum reiciendis dicta doloribus ea vitae",
             image: "plant5.png",
             lightAmount: "low",
-            addedDate: "2023-06-04"
+            addedDate: "2023-06-04",
+            onSale: false
         }
     ];
 
@@ -94,7 +99,7 @@ $(document).ready(function(){
 
         // 3: set the content for the current plant card from the plants array
         $(currentChild).find("#nameText").text(plant.name);
-        $(currentChild).find("#priceText").text(plant.price);
+        $(currentChild).find("#priceText").text('R' + plant.price);
         $(currentChild).find("#descriptionText").text(plant.description);
         $(currentChild).find(".card-img-top").attr('src', 'assets/' + plant.image);
 
@@ -136,15 +141,31 @@ $("input[name='sortRadio']").click(function(){
     filterSortPlants();
 });
 
+$("input[name='saleRadio']").click(function () {
+    appliedFilter = $(this).attr('value');
+    filterSortPlants();
+});
+
+$("#btncheck1").change(function () {
+    if (this.checked) {
+        appliedSort = "alphabetically";
+    } else {
+        appliedSort = "date added";
+    }
+    filterSortPlants();
+});
+
 function filterSortPlants() {
 
     let filterSortedArrPlants = [];
 
     // Filter plants
 
-    if (appliedFilter){
-        filterSortedArrPlants = arrPlants.filter(plant => plant.lightAmount == appliedFilter)
-    } else{
+    if (appliedFilter === "sale") {
+        filterSortedArrPlants = arrPlants.filter(plant => plant.onSale === true);
+    } else if (appliedFilter) {
+        filterSortedArrPlants = arrPlants.filter(plant => plant.lightAmount === appliedFilter);
+    } else {
         filterSortedArrPlants = arrPlants;
     }
 
@@ -157,6 +178,11 @@ function filterSortPlants() {
             return a.price - b.price;
         });
 
+    } else if (appliedSort === "alphabetically") {
+        filterSortedArrPlants = filterSortedArrPlants.sort((a, b) => {
+            return a.name.localeCompare(b.name);
+        });
+    
     } else if (appliedSort == "date added") {
 
         // sort plants from the newest to oldest
@@ -164,8 +190,11 @@ function filterSortPlants() {
             let da = new Date(a.addedDate);
             let db = new Date(b.addedDate);
 
-            return db -da;
+            return db - da;
+
         });
+
+        console.log("date applied")
     }
 
     loadPlants(filterSortedArrPlants);
